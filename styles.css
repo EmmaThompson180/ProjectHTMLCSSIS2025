@@ -1,0 +1,153 @@
+
+/*A custom background color or background image-->*/
+
+/*Styles that specify font color */
+
+body {
+
+
+  background-color: #2B2D42;
+  color: #EDF2F4;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+h1 {
+
+text-align: center;
+  font-size: 60px;
+
+}
+
+h2 {
+
+  text-align: center;
+    font-size: 30px;
+display: block;
+background-color: #bfd4db;
+margin-right: 40px ;
+margin-left: 40px ;
+padding: 25px;
+color: #275570;
+border-radius: 10px;
+border-style:groove;
+border-width: 10px;
+
+}
+
+.bold {
+font-weight: bold;
+
+}
+
+ul{
+
+
+  display: inline-block;
+  align-items: top;
+  background-color: #227C9D;
+  padding: 20px;
+  margin-right: 10px;
+    margin-left: 10px;
+border-radius: 10px;
+  width: 45%;
+}
+
+.aligm 
+{
+
+margin-left: 35px;
+  font-size: 25px;
+}
+
+
+.flexy {
+
+  display: flex;
+  gap: 30px;
+  text-align: center;
+}
+
+.middlish {
+
+margin-left: 100px;
+}
+
+p a{
+
+color: #88B7C9;
+}
+
+.boxyy
+{
+display: block;
+padding: 30px;
+background-color: #EDF2F4;
+color: #2B2D42;
+margin-left: 40px;
+margin-right: 40px;
+border-radius: 10px;
+font-style: italic;
+
+
+}
+
+
+.footer {
+
+
+  display: block;
+  background-color: #275570;
+  color: #bfd4db;
+margin-left: 160px;
+margin-right: 160px;
+padding: 30px;
+text-align:  center;
+border-radius: 10px;
+border-style: groove;
+}
+
+.footer a {
+
+
+  color: #EDF2F4;
+  font-size: 40px;
+}
+
+.youtu iframe{
+
+
+  margin-left: 350px;
+}
+
+/*<!--Styles that specify font family-->*/
+
+nav {
+
+
+  background-color: #227C9D;
+  padding: 15px;
+  display: block;
+  text-align: center;
+  margin-right: 300px;
+    margin-left: 300px;
+font-size: 30px;
+  word-spacing: 60px;
+  border-color: #275570;
+  border-style:inset;
+  border-width: 10px;
+
+
+}
+
+nav a 
+{
+
+  color: #D4E4EA;
+
+  text-decoration: none;
+}
+
+
+
+/*At least three divs for positioning and styling blocks of content in the HTML page */
+

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* --- FULL SCREEN MULTI-COLORED NEON LINES --- */
+#neon-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.neon-line {
+  position: absolute;
+  width: 6px;
+  border-radius: 3px;
+  animation: slideDown linear infinite;
+}
+
+.neon-line.red { background: linear-gradient(to bottom, rgba(255,0,0,1), rgba(255,0,0,0)); }
+.neon-line.cyan { background: linear-gradient(to bottom, rgba(0,255,255,1), rgba(0,255,255,0)); }
+.neon-line.green { background: linear-gradient(to bottom, rgba(0,255,0,1), rgba(0,255,0,0)); }
+.neon-line.pink { background: linear-gradient(to bottom, rgba(255,0,255,1), rgba(255,0,255,0)); }
+.neon-line.orange { background: linear-gradient(to bottom, rgba(255,165,0,1), rgba(255,165,0,0)); }
+
+@keyframes slideDown {
+  0% { transform: translateY(-150%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(150%); opacity: 0; }
+}
+
+/* --- MAIN GAME CONTAINER --- */
+#main-container {
+  position: relative;
+  z-index: 2;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.4em;
+  margin-bottom: 10px;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+#stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+#timer, #score, #highScore {
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+  font-weight: bold;
+}
+
+#grid {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  perspective: 1000px;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 14px rgba(0,255,255,0.7);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-front { transform: rotateY(180deg); }
+.card-back { background: #444; }
+
+#winOverlay {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  display:flex; align-items:center; justify-content:center;
+  font-size:2em; color:#0ff; z-index:100;
+  display:none; flex-direction:column;
+  text-shadow:0 0 8px #0ff; border-radius:8px;
+}
+
+#restartBtn {
+  margin-top: 20px;
+  padding: 8px 16px;
+  font-size: 1em;
+  cursor:pointer;
+  border-radius:6px;
+  border:none;
+  background-color:#0ff;
+  color:#000;
+  font-weight:bold;
+  box-shadow:0 0 6px #0ff;
+}
+
+#nav-footer {
+  margin-top:30px;
+  padding-top:20px;
+  border-top:1px solid #0ff;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  font-family:'Orbitron', sans-serif;
+}
+
+#nav-footer a {
+  color:#0ff;
+  text-decoration:none;
+  font-size:1em;
+  transition:0.3s;
+}
+#nav-footer a:hover { text-shadow:0 0 10px #0ff; }
+#highScore { margin-top:20px; font-size:1em; color:#0ff; text-shadow:0 0 6px #0ff; }
+</style>
+</head>
+<body>
+
+<div id="neon-bg"></div>
+
+<div id="main-container">
+  <h1>Memory Game</h1>
+  <div id="stats">
+    <div id="timer">Time: 60s</div>
+    <div id="score">Matches: 0</div>
+  </div>
+  <div id="grid"></div>
+  <div id="highScore">High Score: 0</div>
+  <button id="restartBtn">Restart Game</button>
+  <div id="nav-footer">
+    <a href="index.html">Index</a>
+    <a href="about.html">About</a>
+    <a href="resume.html">Resume</a>
+  </div>
+</div>
+
+<div id="winOverlay">You Win!</div>
+
+<script>
+// --- FULL SCREEN MULTI-COLORED NEON LINES ---
+function createNeonBackground() {
+  const bg = document.getElementById('neon-bg');
+  const colors = ['red','cyan','green','pink','orange'];
+  const spacing = 8; 
+  const lineCount = Math.floor(window.innerWidth / spacing);
+  for (let i = 0; i < lineCount; i++) {
+    const line = document.createElement('div');
+    line.classList.add('neon-line');
+    line.classList.add(colors[Math.floor(Math.random()*colors.length)]);
+    line.style.left = `${i * spacing}px`;
+    line.style.top = `${Math.random() * 100}%`;
+    line.style.height = `${30 + Math.random() * 50}px`;
+    line.style.animationDuration = `${1 + Math.random() * 3}s`;
+    bg.appendChild(line);
+  }
+}
+createNeonBackground();
+window.addEventListener('resize', () => {
+  document.getElementById('neon-bg').innerHTML = '';
+  createNeonBackground();
+});
+
+// --- MEMORY GAME JS ---
+const grid = document.getElementById('grid');
+const timerDisplay = document.getElementById('timer');
+const scoreDisplay = document.getElementById('score');
+const highScoreDisplay = document.getElementById('highScore');
+const winOverlay = document.getElementById('winOverlay');
+const restartBtn = document.getElementById('restartBtn');
+
+const animals = ['🐶','🐱','🦊','🐸','🐵','🐼','🐯','🐰','🦁','🐷','🐮','🐨','🐔','🐧','🐤','🐹','🐭','🐻'];
+const colors = ['#ff4500','#1e90ff','#32cd32','#ff69b4','#ffa500','#8a2be2','#00ced1','#dc143c'];
+const levels = [4,16,36]; 
+let level = 0, flippedCards = [], matches = 0, totalPairs = 0, timeLeft = 60, timer, highScore = 0;
+
+function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i], array[j]]=[array[j], array[i]];}}
+
+function createCards(){
+  const numCards=levels[level]; totalPairs=numCards/2;
+  let selectedAnimals=animals.slice(0,totalPairs);
+  let doubleAnimals=[...selectedAnimals,...selectedAnimals]; shuffle(doubleAnimals);
+  const columns=Math.ceil(Math.sqrt(numCards)); grid.style.gridTemplateColumns=`repeat(${columns},60px)`; 
+  grid.innerHTML=''; flippedCards=[]; matches=0; scoreDisplay.textContent=`Matches: ${matches}`;
+  doubleAnimals.forEach(animal=>{
+    const card=document.createElement('div'); card.classList.add('card');
+    const inner=document.createElement('div'); inner.classList.add('card-inner');
+    const front=document.createElement('div'); front.classList.add('card-front'); front.textContent=animal;
+    front.style.background=colors[Math.floor(Math.random()*colors.length)];
+    const back=document.createElement('div'); back.classList.add('card-back'); back.textContent='?'; back.style.background='#444';
+    inner.appendChild(front); inner.appendChild(back); card.appendChild(inner);
+    card.addEventListener('click',()=>flipCard(card,animal));
+    grid.appendChild(card);
+  });
+}
+
+function flipCard(card,animal){
+  if(flippedCards.length<2 && !card.classList.contains('flipped')){
+    card.classList.add('flipped'); flippedCards.push({card,animal});
+    if(flippedCards.length===2){ setTimeout(checkMatch,500); }
+  }
+}
+
+function checkMatch(){
+  const [first,second]=flippedCards;
+  if(first.animal===second.animal){ matches++; scoreDisplay.textContent=`Matches: ${matches}`;
+    if(matches===totalPairs){ clearInterval(timer); if(matches*10>highScore){ highScore=matches*10; highScoreDisplay.textContent=`High Score: ${highScore}`; } showWinOverlay(); }
+  } else { first.card.classList.remove('flipped'); second.card.classList.remove('flipped'); }
+  flippedCards=[];
+}
+
+function showWinOverlay(){
+  winOverlay.style.display='flex';
+  setTimeout(()=>{winOverlay.style.display='none';
+    if(level<levels.length-1){ level++; startLevel(); } else { winOverlay.textContent='Congratulations! All levels complete!'; winOverlay.style.display='flex'; }
+  },1500);
+}
+
+function startTimer(){
+  clearInterval(timer); timeLeft=60; timerDisplay.textContent=`Time: ${timeLeft}s`;
+  timer=setInterval(()=>{ timeLeft--; timerDisplay.textContent=`Time: ${timeLeft}s`;
+    if(timeLeft<=0){ clearInterval(timer); level=Math.max(0,level-2); startLevel(); }
+  },1000);
+}
+
+function startLevel(){ createCards(); startTimer(); }
+
+restartBtn.addEventListener('click',()=>{ level=0; startLevel(); });
+
+startLevel();
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma Thompson - Resume</title>
+<style>
+/* --- Global Styles --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+    background-color: #fdfdfd;
+    color: #1a1a1a;
+    line-height: 1.5;
+}
+
+a {
+    color: #0073e6;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Container --- */
+.container {
+    max-width: 900px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* --- Header --- */
+.header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #e0f7fa, #fff3e0);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Profile section */
+.profile-container {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0073e6;
+    box-shadow: 0 0 8px rgba(0,115,230,0.3);
+}
+
+/* Header text */
+.header-text {
+    text-align: left;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #0073e6;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.header h2 {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.contact {
+    font-size: 1em;
+    color: #555555;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- Section Titles --- */
+.section-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 3px solid #0073e6;
+    padding-bottom: 4px;
+    margin-top: 0;
+}
+
+/* --- Main Content --- */
+.main .job {
+    margin-bottom: 20px;
+}
+
+.job h3 {
+    margin: 5px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #e64a19;
+}
+
+.job .company {
+    font-style: italic;
+    color: #0073e6;
+    font-size: 0.95em;
+}
+
+.job ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.sidebar p, .sidebar ul {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.sidebar ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* --- Skills & Awards --- */
+.skills-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* --- Footer Navigation --- */
+.resume-footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.footer-nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #0073e6;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media(max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+    .sidebar {
+        margin-top: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="profile-container">
+            <!-- Replace src with your own image -->
+            <img src="image/IMG_8788.JPG" alt="Emma" class="profile-pic">
+        </div>
+        <div class="header-text">
+            <h1>Emma Thompson</h1>
+            <h2>High School Graduate / Entry-Level Professional</h2>
+            <div class="contact">
+                <span>📧 emma.thompson@example.com</span>
+                <span>📞 (123) 456-7890</span>
+                <span>📍 Mapleton, UT</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="section-title">Work Experience</div>
+
+        <div class="job">
+            <h3>Food Worker</h3>
+            <div class="company">BYU Football Stadium</div>
+            <ul>
+                <li>Greeted customers warmly and managed the flow efficiently.</li>
+                <li>Communicated effectively about products and services.</li>
+                <li>Used computer skills to assist customers with payments.</li>
+                <li>Maintained a clean, organized workspace ensuring customer comfort.</li>
+                <li>Restocked supplies and monitored inventory levels to prevent shortages.</li>
+                <li>Collaborated with team members to streamline service during peak hours.</li>
+                <li>Assisted in training new staff on customer service and safety protocols.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h3>Car Wash Attendant</h3>
+            <div class="company">Wiggy Wash, Springville</div>
+            <ul>
+                <li>Delivered high-quality vehicle cleaning, including guiding, drying, and detailing.</li>
+                <li>Operated wash equipment safely in fast-paced conditions.</li>
+                <li>Provided professional customer service and answered inquiries.</li>
+                <li>Demonstrated strong time management and reliability.</li>
+                <li>Monitored and maintained cleaning chemicals and equipment.</li>
+                <li>Ensured all vehicles were cleaned according to company standards.</li>
+                <li>Assisted in scheduling and coordinating team shifts.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h3>Referee</h3>
+            <div class="company">Springville Soccer</div>
+            <ul>
+                <li>Officiated games for players of varying ages, ensuring fair play.</li>
+                <li>Made confident decisions under pressure.</li>
+                <li>Exhibited leadership and strong communication skills with teams and assistants.</li>
+                <li>Managed match schedules to ensure punctuality.</li>
+                <li>Resolved conflicts and enforced rules consistently.</li>
+                <li>Provided feedback and guidance to players to improve sportsmanship.</li>
+                <li>Assisted in organizing tournaments and special events.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="section-title">Education</div>
+        <p><strong>Maple Mountain High School</strong><br>
+        High School Diploma | 2025<br>
+        Mapleton, UT</p>
+
+        <div class="section-title">Skills</div>
+        <ul class="skills-list">
+            <li>Communication</li>
+            <li>Computer Skills</li>
+            <li>Customer Service</li>
+            <li>Problem-Solving</li>
+            <li>Team Collaboration</li>
+            <li>Leadership</li>
+            <li>Adaptability</li>
+            <li>Time Management</li>
+            <li>Friendly Attitude</li>
+            <li>Hardworking</li>
+            <li>Detail-Oriented</li>
+            <li>Critical Thinking</li>
+            <li>Organization</li>
+            <li>Digital Media</li>
+            <li>Web Development</li>
+            <li>HTML & CSS</li>
+        </ul>
+
+        <div class="section-title">Awards & Certificates</div>
+        <ul class="skills-list">
+            <li>Kwania Excellence Award – 2023</li>
+            <li>HTML & CSS Foundations Certificate – 2024</li>
+            <li>Digital Media Basics Certificate – 2024</li>
+        </ul>
+    </div>
+</div>
+
+<footer class="resume-footer">
+  <nav class="footer-nav">
+    <a href="index.html">Index</a>
+    <a href="game.html">Game</a>
+    <a href="about.html">About</a>
+  </nav>
+</footer>
+
+</body>
+</html>
+
